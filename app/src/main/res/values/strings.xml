@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BooksOfNY</string>
+    <string name="books_title">Books</string>
 </resources>
