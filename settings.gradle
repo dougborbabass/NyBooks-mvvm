@@ -1,0 +1,2 @@
+rootProject.name='BooksOfNY'
+include ':app'
