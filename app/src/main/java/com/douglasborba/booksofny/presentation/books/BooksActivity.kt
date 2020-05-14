@@ -3,6 +3,8 @@ package com.douglasborba.booksofny.presentation.books
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.LinearLayout
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.douglasborba.booksofny.R
@@ -18,18 +20,22 @@ class BooksActivity : AppCompatActivity() {
         toolbarMain.title = getString(R.string.books_title)
         setSupportActionBar(toolbarMain)
 
-        with(recyclerBooks){
-            layoutManager = LinearLayoutManager(this@BooksActivity, RecyclerView.VERTICAL, false)
-            setHasFixedSize(true)
-            adapter = BooksAdapter(getBooks())
-        }
-    }
+        // criando o factory do viewModel
+        val viewModel: BooksViewModel = ViewModelProviders.of(this).get(BooksViewModel::class.java)
 
-    fun getBooks(): List<Book>{
-        return listOf<Book>(
-            Book("Title 1", "Author 1"),
-            Book("Title 2", "Author2 "),
-            Book("Title 3", "Author 3")
-        )
+        // fica escutando todas alterações do livedata
+        viewModel.booksLiveData.observe(this, Observer {
+            //só entra no let se for diferente de nulo
+            it?.let {books ->
+                // instanciando o recyclerview
+                with(recyclerBooks){
+                    layoutManager = LinearLayoutManager(this@BooksActivity, RecyclerView.VERTICAL, false)
+                    setHasFixedSize(true)
+                    adapter = BooksAdapter(books)
+                }
+            }
+        })
+
+        viewModel.getBooks()
     }
 }
