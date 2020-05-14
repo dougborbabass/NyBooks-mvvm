@@ -5,9 +5,11 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.douglasborba.booksofny.R
+import com.douglasborba.booksofny.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_book_details.*
+import kotlinx.android.synthetic.main.include_toolbar.*
 
-class BookDetailsActivity : AppCompatActivity() {
+class BookDetailsActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,6 +17,8 @@ class BookDetailsActivity : AppCompatActivity() {
 
         val title = intent.getStringExtra(EXTRA_TITLE)
         val description = intent.getStringExtra(EXTRA_DESCRIPTION)
+
+        setupToolBar(toolbar_main, R.string.book_details)
 
         text_title.text = title
         text_description.text = description

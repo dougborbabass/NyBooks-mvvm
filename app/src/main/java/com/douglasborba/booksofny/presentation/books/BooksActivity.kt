@@ -7,17 +7,18 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.douglasborba.booksofny.R
+import com.douglasborba.booksofny.presentation.base.BaseActivity
 import com.douglasborba.booksofny.presentation.details.BookDetailsActivity
 import kotlinx.android.synthetic.main.activity_books.*
+import kotlinx.android.synthetic.main.include_toolbar.*
 
-class BooksActivity : AppCompatActivity() {
+class BooksActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
-        toolbarMain.title = getString(R.string.book_title)
-        setSupportActionBar(toolbarMain)
+        setupToolBar(toolbar_main, R.string.book_title)
 
         // criando o factory do viewModel
         val viewModel: BooksViewModel = ViewModelProviders.of(this).get(BooksViewModel::class.java)
@@ -27,7 +28,7 @@ class BooksActivity : AppCompatActivity() {
             //só entra no let se for diferente de nulo
             it?.let { books ->
                 // instanciando o recyclerview
-                with(recyclerBooks) {
+                with(recycler_books) {
                     layoutManager =
                         LinearLayoutManager(this@BooksActivity, RecyclerView.VERTICAL, false)
                     setHasFixedSize(true)
