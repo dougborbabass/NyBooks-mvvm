@@ -13,5 +13,5 @@ object ApiService {
             .build()
     }
     // instancia do retrofit criada e associada com a classe de serviço (endpoints)
-    val service = initRetrofit().create(NYTServices::class.java)
+    val service: NYTServices = initRetrofit().create(NYTServices::class.java)
 }
