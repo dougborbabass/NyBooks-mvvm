@@ -1,4 +1,4 @@
-package com.douglasborba.booksofny.data
+package com.douglasborba.booksofny.data.repository
 
 import com.douglasborba.booksofny.data.model.Book
 

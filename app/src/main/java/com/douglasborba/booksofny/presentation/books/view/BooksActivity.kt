@@ -1,15 +1,14 @@
-package com.douglasborba.booksofny.presentation.books
+package com.douglasborba.booksofny.presentation.books.view
 
 import android.os.Bundle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.douglasborba.booksofny.R
 import com.douglasborba.booksofny.data.repository.BooksApiDataSource
 import com.douglasborba.booksofny.presentation.base.BaseActivity
-import com.douglasborba.booksofny.presentation.details.BookDetailsActivity
+import com.douglasborba.booksofny.presentation.books.adapter.BooksAdapter
+import com.douglasborba.booksofny.presentation.books.viewmodel.BooksViewModel
 import kotlinx.android.synthetic.main.activity_books.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
@@ -21,7 +20,9 @@ class BooksActivity : BaseActivity() {
 
         setupToolBar(toolbar_main, R.string.book_title, false)
 
-        val viewModel: BooksViewModel = BooksViewModel.ViewModelFactory(BooksApiDataSource())
+        val viewModel: BooksViewModel = BooksViewModel.ViewModelFactory(
+            BooksApiDataSource()
+        )
             .create(BooksViewModel::class.java)
 
         viewModel.booksLiveData.observe(this, Observer {
@@ -29,10 +30,17 @@ class BooksActivity : BaseActivity() {
                 with(recycler_books) {
                     layoutManager = LinearLayoutManager(this@BooksActivity, RecyclerView.VERTICAL, false)
                     setHasFixedSize(true)
-                    adapter = BooksAdapter(books) { book ->
-                        val intent = BookDetailsActivity.getStartIntent(this@BooksActivity, book.title, book.description)
-                        this@BooksActivity.startActivity(intent)
-                    }
+                    adapter =
+                        BooksAdapter(
+                            books
+                        ) { book ->
+                            val intent = BookDetailsActivity.getStartIntent(
+                                this@BooksActivity,
+                                book.title,
+                                book.description
+                            )
+                            this@BooksActivity.startActivity(intent)
+                        }
                 }
             }
         })

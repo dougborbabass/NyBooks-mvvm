@@ -1,11 +1,8 @@
 package com.douglasborba.booksofny.data.repository
 
-import com.douglasborba.booksofny.R
-import com.douglasborba.booksofny.data.ApiService
-import com.douglasborba.booksofny.data.BooksResult
+import com.douglasborba.booksofny.data.service.ApiService
 import com.douglasborba.booksofny.data.model.Book
 import com.douglasborba.booksofny.data.response.BookBodyResponse
-import com.douglasborba.booksofny.presentation.books.BooksViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

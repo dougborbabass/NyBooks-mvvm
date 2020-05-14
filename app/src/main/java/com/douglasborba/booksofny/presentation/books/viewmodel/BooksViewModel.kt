@@ -1,10 +1,10 @@
-package com.douglasborba.booksofny.presentation.books
+package com.douglasborba.booksofny.presentation.books.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.douglasborba.booksofny.R
-import com.douglasborba.booksofny.data.BooksResult
+import com.douglasborba.booksofny.data.repository.BooksResult
 import com.douglasborba.booksofny.data.model.Book
 import com.douglasborba.booksofny.data.repository.BooksRepository
 import java.lang.IllegalArgumentException
@@ -43,7 +43,9 @@ class BooksViewModel(val dataSource: BooksRepository) : ViewModel() {
     class ViewModelFactory(val dataSource: BooksRepository) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(BooksViewModel::class.java)){
-                return BooksViewModel(dataSource) as T
+                return BooksViewModel(
+                    dataSource
+                ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

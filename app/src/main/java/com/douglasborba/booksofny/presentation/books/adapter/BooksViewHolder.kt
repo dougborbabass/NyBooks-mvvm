@@ -1,4 +1,4 @@
-package com.douglasborba.booksofny.presentation.books
+package com.douglasborba.booksofny.presentation.books.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

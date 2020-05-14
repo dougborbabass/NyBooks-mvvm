@@ -1,4 +1,4 @@
-package com.douglasborba.booksofny.data
+package com.douglasborba.booksofny.data.service
 
 import com.douglasborba.booksofny.data.response.BookBodyResponse
 import retrofit2.Call

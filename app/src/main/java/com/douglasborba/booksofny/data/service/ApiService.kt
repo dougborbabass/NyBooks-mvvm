@@ -1,4 +1,4 @@
-package com.douglasborba.booksofny.data
+package com.douglasborba.booksofny.data.service
 
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -13,5 +13,6 @@ object ApiService {
             .build()
     }
     // instancia do retrofit criada e associada com a classe de serviço (endpoints)
-    val service: NYTServices = initRetrofit().create(NYTServices::class.java)
+    val service: NYTServices = initRetrofit()
+        .create(NYTServices::class.java)
 }

@@ -1,9 +1,8 @@
-package com.douglasborba.booksofny.presentation.details
+package com.douglasborba.booksofny.presentation.books.view
 
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.douglasborba.booksofny.R
 import com.douglasborba.booksofny.presentation.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_book_details.*
