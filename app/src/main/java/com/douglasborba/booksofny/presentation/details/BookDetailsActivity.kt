@@ -18,7 +18,7 @@ class BookDetailsActivity : BaseActivity() {
         val title = intent.getStringExtra(EXTRA_TITLE)
         val description = intent.getStringExtra(EXTRA_DESCRIPTION)
 
-        setupToolBar(toolbar_main, R.string.book_details)
+        setupToolBar(toolbar_main, R.string.book_details, true)
 
         text_title.text = title
         text_description.text = description

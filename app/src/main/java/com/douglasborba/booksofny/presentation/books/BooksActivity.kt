@@ -1,7 +1,6 @@
 package com.douglasborba.booksofny.presentation.books
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +17,7 @@ class BooksActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_books)
 
-        setupToolBar(toolbar_main, R.string.book_title)
+        setupToolBar(toolbar_main, R.string.book_title, false)
 
         // criando o factory do viewModel
         val viewModel: BooksViewModel = ViewModelProviders.of(this).get(BooksViewModel::class.java)
@@ -40,6 +39,15 @@ class BooksActivity : BaseActivity() {
                         )
                         this@BooksActivity.startActivity(intent)
                     }
+                }
+            }
+        })
+
+        viewModel.viewFlipperLiveData.observe(this, Observer {
+            it?.let { viewFlipper ->
+                viewflipper_books.displayedChild = viewFlipper.first
+                viewFlipper.second?.let { messageErrorResId ->
+                    text_error.text = getString(messageErrorResId)
                 }
             }
         })
